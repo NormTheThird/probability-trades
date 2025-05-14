@@ -1,0 +1,17 @@
+﻿<Application x:Class="ProbabilityTrades.UI.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="/Views/Styles/UIColors.xaml"/>
+                <ResourceDictionary Source="/Views/Styles/ButtonStyles.xaml"/>-->
+
+                <ResourceDictionary Source="Styles.xaml" />
+                <ResourceDictionary Source="DataTemplates.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>

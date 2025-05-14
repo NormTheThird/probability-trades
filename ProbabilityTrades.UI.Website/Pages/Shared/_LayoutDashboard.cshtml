@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Probability Trade</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Probability Trade">
+    <meta name="description" content="Probability Trade">
+    <meta name="author" content="Uniek Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" href="images/logos/logo_gold.png">
+    <link rel="stylesheet" href="~/css/flexslider.css" />
+    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/plugins/jquery-ui/jquery-ui.min.css" />
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="~/plugins/toastr/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:400,300,700" />
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/css/icons-fonts.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/animate.min.css" />
+</head>
+<body>
+
+    <div id="wrap" class="boxed ">
+        <div class="grey-bg">
+
+            <header id="nav" class="header header-1 no-transparent mobile-no-transparent">
+                <div class="header-wrapper">
+
+                    <!-- header logo-->
+                    <div class="container-m-30 clearfix">
+                        <div class="logo-row">
+                            <div class="logo-container-2">
+                                <div class="logo-2">
+                                    <a href="/" class="clearfix">
+                                        <img src="images/logos/logo_gold.png" class="logo-img" alt="Logo">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="menu-btn-respons-container">
+                                <button type="button" class="navbar-toggle btn-navbar collapsed" data-toggle="collapse" data-target="#main-menu .navbar-collapse">
+                                    <span aria-hidden="true" class="icon_menu hamb-mob-icon"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- header nav bar -->
+                    <div class="main-menu-container">
+                        <div class="container-m-30 clearfix">
+                            <div id="main-menu">
+                                <div class="navbar navbar-default" role="navigation">
+                                    <nav class="collapse collapsing navbar-collapse right-1024">
+                                        <ul class="nav navbar-nav">
+                                            <li class="parent">
+                                                <a href="../"><div class="main-menu-title" data-bind="text: $parent.Username"></div></a>
+                                                @*<ul class="sub">
+                                                <li class="parent">
+                                                <a href="#">Revolution Slider</a>
+                                                <ul class="sub">
+                                                <li><a href="index.html">Full Screen</a></li>
+                                                <li><a href="slider-revo-full-width.html">Full Width</a></li>
+                                                <li><a href="slider-revo-kenburns.html">Kenburns Effect</a></li>
+                                                <li><a href="slider-revo-html5-video.html">HTML5 Video</a></li>
+                                                <li><a href="revo-slider-demo/start-here.html">All Demos <span class="label-new">new</span></a></li>
+                                                </ul>
+                                                </li>
+                                                <li><a href="account">Account Settings</a></li>
+                                                <li><a href="security" data-bind="click: Logout">Logout</a></li>
+                                                <li class="parent">
+                                                <a href="#">Static Media</a>
+                                                <ul class="sub">
+                                                <li><a href="static-image.html">Image</a></li>
+                                                <li><a href="static-image-left.html">Image 2 <span class="label-new">new</span></a></li>
+                                                <li><a href="static-parallax.html">Parallax</a></li>
+                                                <li><a href="static-parallax2.html">Parallax 2 <span class="label-new">new</span></a></li>
+                                                <li><a href="static-text-rotator.html">Text Rotator</a></li>
+                                                <li><a href="static-video.html">HTML5 Video</a></li>
+                                                </ul>
+                                                </li>
+                                                </ul>*@
+                                            </li>
+
+                                            @*<li>
+                                            <a href="../" class="icon icon-arrows-move-left" style="font-size:20px;" title="Back to the main website"></a>
+                                            </li>*@
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </header>
+
+            <!-- page title -->
+            <div class="page-title-cont page-title-small grey-light-bg">
+                <div class="relative container align-left">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h1 class="page-title">@ViewBag.Title</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container bs-docs-container p-140-cont">
+                <div class="row">
+
+                    <!-- menu -->
+                    <div class="col-md-3">
+                        <div id="sidebar-stiky" class="bs-sidebar hidden-xs hidden-sm clearfix" role="complementary">
+                            <!-- main menu -->
+                            <h4 class="mt-0">MAIN MENU</h4>
+                            <ul id="nav-sidebar" class="nav bs-sidenav blog-categories">
+                                <li><a href="account">Account Settings</a></li>
+                                <li><a href="subscription">Manage Subscription</a></li>
+                                <li class="mt-20"><a href="../" class="font-12"><i class="fa fa-arrow-left"></i> Back To Website</a></li>
+                                <li>
+                                    <form id="logoutForm" asp-page="/Security/Logout" method="post">
+                                        <a class="font-12" onclick="document.getElementById('logoutForm').submit();">
+                                            <i class="fa fa-sign-out"></i> Logout
+                                        </a>
+                                    </form>
+                                </li>
+                            </ul>
+
+                            <!-- admin menu -->
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <h4 class="mt-60">ADMIN</h4>
+                                <ul id="nav-sidebar" class="nav bs-sidenav blog-categories">
+                                    <li><a href="users">Users</a></li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+                        @RenderBody()
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="footer-offset">
+                <p id="back-top">
+                    <a href="#top" title="Back to Top"><span class="icon icon-arrows-up"></span></a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="~/plugins/jquery/jquery-1.11.2.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
+    @*     <script src="~/plugins/knockout/knockout-3.5.1.min.js"></script> *@
+
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    @*<script src="https://cdn.tiny.cloud/1/lubvwqf3wiz96rvu5esc6wkj6rlhkojig7yxoa5poajlxmlo/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> *@
+    @*<script src="https://cdn.tiny.cloud/1/lubvwqf3wiz96rvu5esc6wkj6rlhkojig7yxoa5poajlxmlo/tinymce/5/jquery.tinymce.min.js" referrerpolicy="origin"></script>*@
+
+    <script src="https://cdn.tiny.cloud/1/lubvwqf3wiz96rvu5esc6wkj6rlhkojig7yxoa5poajlxmlo/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@@tinymce/tinymce-jquery@@2/dist/tinymce-jquery.min.js"></script>
+    @*
+    <script src="~/plugins/tinymce-knockout/wysiwyg.js"></script> *@
+    <script src="~/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/plugins/jquery/jquery.magnific-popup.min.js"></script>
+    <script src="~/plugins/jquery/jquery.countTo.js"></script>
+    <script src="~/plugins/jquery/jquery.appear.js"></script>
+    <script src="~/plugins/jquery/jquery.nav.js"></script>
+    <script src="~/plugins/toastr/js/toastr.min.js"></script>
+    <script src="~/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="~/plugins/js-cookie/js.cookie.min.js"></script>
+    <script src="~/js/imagesloaded.pkgd.min.js"></script>
+    @*
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script> *@
+    @*
+    <script src="~/js/ViewModels/_BaseModel.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/BlogViewModels.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/MainViewModel.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/DashboardViewModels.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/AccountViewModels.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/SubscriptionViewModels.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+    <script src="~/js/ViewModels/UserViewModels.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script> *@
+    <script src="~/js/main.js?v=@DateTime.Now.ToString("yyyy.MM.dd.hh.mm.ss")"></script>
+
+    <script type="text/javascript">
+        // Get base api url from app settings
+        // BaseModel.BaseApiUrl = '@Configuration["ApiUrl"]';
+        // console.log("BaseApiUrl: " + BaseModel.BaseApiUrl);
+
+        // var MainVM = new MainViewModel();
+        //ko.applyBindings(MainVM);
+
+        $(document).ready(function () {
+
+            //NAV SIDEBAR------------------------------------------------------------------
+            var top_offset = $('header').height() - 1;  // get height of fixed navbar
+
+            $('#nav-sidebar').onePageNav({
+                currentClass: 'current',
+                changeHash: false,
+                scrollSpeed: 700,
+                scrollOffset: top_offset,
+                scrollThreshold: 0.5,
+                filter: '',
+                easing: 'swing',
+                begin: function () {
+                    //I get fired when the animation is starting
+                },
+                end: function () {
+                    //I get fired when the animation is ending
+                },
+                scrollChange: function ($currentListItem) {
+
+                    console.log("Click");
+
+                    //I get fired when you enter a section and I pass the list item of the section
+                }
+            });
+
+            //SIDEBAR STICKY---------------------------------------------
+            var //offsetSb = $('.page-title-bg').height(),
+                offsetFooter = $('#footer-offset').height() + 30;
+            // DM Menu
+            jQuery('#sidebar-stiky').affix({
+                offset: {
+                    top: 300, //top offset for header 1 for others headers it will have other value
+                    bottom: offsetFooter
+                }
+            });
+
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>		

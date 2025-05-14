@@ -1,0 +1,183 @@
+﻿<!-- add / edit modal -->
+<div class="modal fade moving-average-configuration-modal bootstrap-modal" tabindex="-1" role="dialog" aria-hidden="true" data-bind="with: MovingAverageVM">
+    <div class="modal-dialog">
+        <div class="modal-body">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Moving Average Configuration</h4>
+                </div>
+                <div class="modal-body" data-bind="with: SelectedConfiguration()">
+                    <div class="row mb-23">
+                        <div class="col-sm-6">
+                            <input id="DataSource" name="DataSource" type="text" class="controled" readonly data-bind="value: DataSource" />
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="CandlestickPattern" name="CandlestickPattern" class="controled"
+                                    data-bind="options: BaseModel.CandlestickPatterns,
+                                               optionsCaption:'-- Select Candlestick --',
+                                               optionsText: 'Name',
+                                               optionsValue: 'Value',
+                                               value: CandlestickPattern">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-23">
+                        <div class="col-sm-6">
+                            <select id="BaseCurrency" name="BaseCurrency" class="controled"
+                                    data-bind="options: BaseModel.Currency,
+                                               optionsCaption:'-- Select Base Currency --',
+                                               optionsText: 'Name',
+                                               optionsValue: 'Value',
+                                               value: BaseCurrency">
+                            </select>
+                        </div>
+                        <div class="col-sm-6">
+                            <select id="QuoteCurrency" name="QuoteCurrency" class="controled"
+                                    data-bind="options: BaseModel.Currency,
+                                               optionsCaption:'-- Select Quote Currency --',
+                                               optionsText: 'Name',
+                                               optionsValue: 'Value',
+                                               value: QuoteCurrency">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-23">
+                        <div class="col-sm-4">
+                            <select id="ShortMovingAverageDays" name="ShortMovingAverageDays" class="controled"
+                                    data-bind="options: BaseModel.MovingAverageDays,
+                                               optionsCaption:'-- Select SM Avg --',
+                                               optionsText: 'Name',
+                                               optionsValue: 'Value',
+                                               value: ShortMovingAverageDays">
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <select id="LongMovingAverageDays" name="LongMovingAverageDays" class="controled"
+                                    data-bind="options: BaseModel.MovingAverageDays,
+                                               optionsCaption:'-- Select LM Avg --',
+                                               optionsText: 'Name',
+                                               optionsValue: 'Value',
+                                               value: LongMovingAverageDays">
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <input id="StopLossPercentage" name="StopLossPercentage" type="text" class="controled" data-bind="value: StopLossPercentage" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input id="IsActive" name="IsActive" type="checkbox" style="vertical-align:middle; margin:0; transform: scale(1.5)" data-bind="checked: IsActive" />
+                            <label class="font-norm ml-10" for="IsActive">Active Configuration</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <input id="IsSendDiscordNotification" name="IsSendDiscordNotification" type="checkbox" style="vertical-align:middle; margin:0; transform: scale(1.5)" data-bind="checked: IsSendDiscordNotification" />
+                            <label class="font-norm ml-10" for="IsSendDiscordNotification">Discord Notifications</label>
+                        </div>
+                    </div>
+                    <br />
+                    <a class="button small thin blue" href="#"  data-bind="visible: Id() !== BaseModel.Guid.Empty, click: $parent.SaveConfiguration">Save Configuration</a>
+                    <a class="button small thin blue" href="#"  data-bind="visible: Id() === BaseModel.Guid.Empty, click: $parent.AddConfiguration">Add Congifuration</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- main page-->
+<div style="display:none;" data-bind="with: MovingAverageVM, visible: IsShowMovingAverages()">
+    <a class="icon icon-arrows-slim-left" data-bind="click: $parent.ShowSelection"> Back To Selection</a>
+    <div class="row mb-30">
+        <div class="col-md-12">
+
+            <!-- moving average management -->
+            <h4>Kucoin / Moving Average Management</h4>
+            <div class="tabs-3 mt-30">
+                <ul class="nav nav-tabs bootstrap-tabs">
+                    <!-- ko foreach: ConfigurationSummary -->
+                    <li data-bind="css: (Active() ? 'active' : '')">
+                        <a class="a-inv" data-toggle="tab" data-bind="click: $parent.SelectConfigurationSummary, text: DisplayName, attr: { href: '#' + DisplayName() + '-tab' }"></a>
+                    </li>
+                    <!-- /ko -->
+
+                    <li class="pull-right">
+                        <a href="#" title="Add Moving Average Configuration" data-bind="click: ShowAddConfiguration">+ Add</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" data-bind="foreach: ConfigurationSummary">
+                    <div class="tab-pane fade in" data-bind="attr: { id: DisplayName() + '-tab' }, css: (Active() ? 'active' : '' )">
+
+                        <h5 class="mt-40">Configuration</h5>
+                        <table class="table table-striped mb-40">
+                            <thead>
+                                <tr>
+                                    <th>Candle</th>
+                                    <th>Short MA</th>
+                                    <th>Long MA</th>
+                                    <th>Stop-Loss %</th>
+                                    <th>Status</th>
+                                    <th>Notifications</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: $parent.Configurations">
+                                <tr>
+                                    <td data-bind="html: CandlestickPattern"></td>
+                                    <td data-bind="html: ShortMovingAverageDays"></td>
+                                    <td data-bind="html: LongMovingAverageDays"></td>
+                                    <td data-bind="html: StopLossPercentage"></td>
+                                    <td data-bind="html: StatusDisplay"></td>
+                                    <td data-bind="html: NotificationDisplay"></td>
+                                    <td>
+                                        <a class="mr-10"><i class="fa fa-edit" style="font-size: 20px" title="Edit Moving Average Configuration" data-bind="click: $parents[1].ShowEditConfiguration"></i></a>
+                                        <a class="text-danger"><i class="fa fa-trash" style="font-size: 20px" title="Delete Moving Average Configuration" data-bind="click: $parents[1].DeleteConfiguration"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Statuses</h5>
+                        <div class="tabs-3 mt-30" style="display:none;" data-bind="visible: $parent.StatusSummary().length > 0">
+                            <ul class="nav nav-tabs bootstrap-tabs">
+                                    <!-- ko foreach: $parent.StatusSummary -->
+                                    <li data-bind="css: (Active() ? 'active' : '')">
+                                        <a class="a-inv" data-toggle="tab" data-bind="click: $parent.SelectStatusSummary, text: CandlestickPattern, attr: { href: '#' + CandlestickPattern() + '-tab' }"></a>
+                                    </li>
+                                    <!-- /ko -->
+                            </ul>
+
+                            <div class="tab-content mt-20">
+                                <div class="tab-pane fade in active" id="btc-usdt-tab">
+                                    <table id="moving-average-status-datatable" class="table cell-border mb-40">
+                                        <thead>
+                                            <tr>
+                                                <th>Close Date</th>
+                                                <th>Close Price</th>
+                                                <th>Action</th>
+                                                <th>Days</th>
+                                                <th>Short MA</th>
+                                                <th>Long MA</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: $parent.Statuses">
+                                            <tr>
+                                                <td data-bind="html: CloseDateDisplay"></td>
+                                                <td data-bind="html: ClosePrice"></td>
+                                                <td data-bind="html: MarketAction"></td>
+                                                <td data-bind="html: DaysDisplay"></td>
+                                                <td data-bind="html: ShortMovingAverage"></td>
+                                                <td data-bind="html: LongMovingAverage"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

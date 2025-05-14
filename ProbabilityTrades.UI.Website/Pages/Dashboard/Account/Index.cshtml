@@ -1,0 +1,28 @@
+﻿@page "/account"
+@model IndexModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Account Management";
+}
+
+<div class="mb-100 bs-docs-section">
+    <div class="row mb-30">
+        <div class="col-md-12">
+            <div class="tabs-3">
+                <ul class="nav nav-tabs bootstrap-tabs">
+                    <li class="active"><a href="#profile-tab" class="a-inv" data-toggle="tab">PROFILE</a></li>
+                    @* <li><a href="#api-setup-tab" class="a-inv" data-toggle="tab" data-bind="visible: UserExchangeSummary().length > 0">API SETUP</a></li> *@
+                </ul>
+
+                <div class="tab-content">
+
+                    <!-- profile -->
+                    <partial name="_Profile" />
+
+                    @* <partial name="_ApiSetup" /> *@
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

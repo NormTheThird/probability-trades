@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker;Microsoft.NET.Sdk.Publish">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-ProbabilityTrades.Bot.Discord-E568F925-F0BC-4AC0-8F37-9830758D2E9C</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Enumerations\**" />
+    <Content Remove="Enumerations\**" />
+    <EmbeddedResource Remove="Enumerations\**" />
+    <None Remove="Enumerations\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Coravel" Version="5.0.4" />
+    <PackageReference Include="DSharpPlus" Version="4.4.9" />
+    <PackageReference Include="DSharpPlus.SlashCommands" Version="4.4.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.6.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ProbabilityTrades.Common\ProbabilityTrades.Common.csproj" />
+    <ProjectReference Include="..\ProbabilityTrades.Domain\ProbabilityTrades.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Settings.job">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,11 @@
+global using FluentAssertions;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.VisualStudio.TestTools.UnitTesting;
+global using Moq;
+global using ProbabilityTrades.API.Controllers;
+global using ProbabilityTrades.Common.Interfaces;
+global using ProbabilityTrades.Common.Models;
+global using ProbabilityTrades.Common.RequestAndResponses;
+global using ProbabilityTrades.UnitTests.Fixtures;

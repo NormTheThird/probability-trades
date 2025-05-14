@@ -1,0 +1,50 @@
+﻿@page "/users"
+@model IndexModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "User Management";
+}
+
+<div class="mb-100 bs-docs-section">
+    <div class="table-responsive">
+        <table id="users-datatable" class="table table-striped mb-20">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Users)
+                {
+                    <tr>
+                        <td>@user.Username</td>
+                        <td>@user.Email</td>
+                        <td>
+                            @if (user.IsActive)
+                            {
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Active <span class="caret"></span></button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="#">Deactivate</a></li>
+                                    </ul>
+                                </div>
+                            }
+
+                            @if (!user.IsActive && !user.IsDeleted)
+                            {
+                                <span class="label label-warning font-13">Inactive</span>
+                            }
+
+                            @if (user.IsDeleted)
+                            {
+                                <span class="label label-danger font-13">Deleted</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

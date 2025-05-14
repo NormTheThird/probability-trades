@@ -1,0 +1,104 @@
+﻿@page "/currencies"
+@{
+    Layout = "_LayoutDashboard";
+}
+
+<div class="mb-100 bs-docs-section" data-bind="with: CurrentVM">
+    <div class="row mb-30">
+        <div class="col-md-12">
+            <!-- currency history summary -->
+            <div class="tabs-3" style="display:none;" data-bind="visible: IsShowSummary()">
+                <ul class="nav nav-tabs bootstrap-tabs">
+                    <li class="active"><a href="#kucoin-tab" class="a-inv" data-toggle="tab">Kucoin</a></li>
+                </ul>
+
+                <div class="tab-content mt-20">
+                    <div class="tab-pane fade in active" id="kucoin-tab">
+                        <table id="currency-history-datatable" class="table mb-40">
+                            <thead>
+                                <tr>
+                                    <th>Base </th>
+                                    <th>Quote</th>
+                                    <th>Symbol</th>
+                                    <th data-orderable="false"></th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: CurrencyHistorySummary">
+                                <tr>
+                                    <th data-bind="html: BaseCurrency"></th>
+                                    <th data-bind="html: QuoteCurrency"></th>
+                                    <th data-bind="html: DisplayName"></th>
+                                    <th>
+                                        <a class="button small thin gray hover-dark" style="padding: 5px 20px !important"
+                                           data-bind="click: $parent.GetCurrencyHistorySummaryDetail">DETAILS</a>
+                                    </th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- currency history detail -->
+            <div class="tabs-3" style="display:none;" data-bind="visible: IsShowDetail()">
+
+                <a class="icon icon-arrows-slim-left" data-bind="click: BackToSummary"> Back To Summary</a>
+                <h4 data-bind="text: SelectedCurrencyHistorySummary().DataSource() + ' / ' + SelectedCurrencyHistorySummary().DisplayName()"></h4>
+                <h5 class="text-danger" style="margin: -20px 0px 30px 0px;">Tables go back to the last 100 records. Download the data to get the complete range with moving averages.</h5>
+
+                <ul class="nav nav-tabs bootstrap-tabs">
+                    <!-- ko foreach: CurrencyHistorySummaryDetail -->
+                    <li data-bind="css: (Active() ? 'active' : '')">
+                        <a class="a-inv" data-toggle="tab"
+                           data-bind="click: $parent.GetCurrencyHistoryDetails, text: CandlePattern, attr: { href: '#' + CandlePattern() + '-tab' }"></a>
+                    </li>
+                    <!-- /ko -->
+
+                    <li class="pull-right">
+                        <a href="#" data-bind="click: DownloadCurrencyHistoryDetails">+ Download</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" data-bind="foreach: CurrencyHistorySummaryDetail">
+                    <div class="tab-pane fade in" data-bind="attr: { id: CandlePattern() + '-tab' }, css: (Active() ? 'active' : '' )">
+                        <table class="table table-striped mb-40">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Epoch</th>
+                                    <th>Open</th>
+                                    <th>Close</th>
+                                    <th>High</th>
+                                    <th>Low</th>
+                                    <th>Volume</th>
+                                    <th>Turnover</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: $parent.CurrencyHistoryDetails">
+                                <tr>
+                                    <th data-bind="html: DateDisplay"></th>
+                                    <th data-bind="html: ChartTimeEpoch"></th>
+                                    <th data-bind="html: OpenPrice"></th>
+                                    <th data-bind="html: ClosePrice"></th>
+                                    <th data-bind="html: HighPrice"></th>
+                                    <th data-bind="html: LowPrice"></th>
+                                    <th data-bind="html: Volume"></th>
+                                    <th data-bind="html: Turnover"></th>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/ViewModels/CurrencyViewModels.js"></script>
+    <script type="text/javascript">
+        MainVM.PageTitle("Currency Management");
+        MainVM.CurrentVM(new CurrencyViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+    }

@@ -1,0 +1,145 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	         xmlns:records="clr-namespace:ProbabilityTrades.Avalonia.Records"
+			 xmlns:models="clr-namespace:ProbabilityTrades.Avalonia.Models"
+             xmlns:viewModels="clr-namespace:ProbabilityTrades.Avalonia.ViewModels"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             mc:Ignorable="d" d:DesignWidth="1200" d:DesignHeight="800"
+             x:Class="ProbabilityTrades.Avalonia.Views.MainView"
+             x:DataType="viewModels:MainViewModel">
+	<Design.DataContext>
+		<viewModels:MainViewModel />
+	</Design.DataContext>
+
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}"
+			   OpenPaneLength="200"
+			   CompactPaneLength="65"
+			   DisplayMode="CompactInline"
+			   PaneBackground="#fff">
+		<SplitView.Pane>
+
+			<Grid RowDefinitions="auto, *">
+
+				<Grid.Styles>
+					<Style Selector="Label">
+						<Setter Property="Foreground" Value="Black" />
+					</Style>
+				</Grid.Styles>
+
+				<!-- logo and name -->
+				<StackPanel Grid.Row="0"
+							Height="30"
+							Margin="0,15,0,40"
+							Orientation="Vertical">
+					<Label Content="Probability"
+						   FontSize="18"
+						   FontWeight="Bold"
+						   HorizontalAlignment="Center"
+						   Foreground="Black"
+						   IsVisible="{Binding IsPaneOpen}" />
+					<Label Content="Trades"
+						   FontSize="12"
+						   HorizontalAlignment="Center"
+						   Foreground="Black"
+						   IsVisible="{Binding IsPaneOpen}" />
+				</StackPanel>
+
+
+				<!--#3BAFDA-->
+				
+				<!-- navigation -->
+				<StackPanel Grid.Row="1"
+							Margin="10">
+					<ListBox ItemsSource="{Binding NavigationItems}"
+							 SelectedItem="{Binding SelectedNavigationItem}">
+						<ListBox.Styles>
+							<Style Selector="ListBoxItem">
+								<Setter Property="Background" Value="White"></Setter>
+								<Setter Property="Foreground" Value="#6e768e"></Setter>
+								<Setter Property="Padding" Value="10,5"></Setter>
+							</Style>
+							<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+								<Setter Property="Background" Value="White"></Setter>
+								<Setter Property="Foreground" Value="#3BAFDA"></Setter>
+							</Style>
+							<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+								<Setter Property="Background" Value="White"></Setter>
+								<Setter Property="Foreground" Value="#3BAFDA"></Setter>
+							</Style>
+						</ListBox.Styles>
+						<ListBox.ItemTemplate>
+							<DataTemplate DataType="{x:Type records:NavigationItemRecord}">
+								<StackPanel Spacing="10" Orientation="Horizontal">
+									<materialIcons:MaterialIcon Kind="{Binding IconKind}" Width="25" Height="25" 
+																Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+									<TextBlock VerticalAlignment="Center" Text="{Binding Label}" />
+								</StackPanel>
+							</DataTemplate>
+						</ListBox.ItemTemplate>
+					</ListBox>
+				</StackPanel>
+
+			</Grid>
+		</SplitView.Pane>
+		<SplitView.Content>
+			<Grid RowDefinitions="Auto, *">
+
+				<!-- header -->
+				<Grid Grid.Row="0"
+					  Background="#3d4752">
+
+					<Grid.Styles>
+						<Style Selector="Button">
+							<Setter Property="Background" Value="Transparent" />
+							<Setter Property="Foreground" Value="White" />
+							<Setter Property="Margin" Value="10" />
+						</Style>
+
+						<Style Selector="Button:pointerover /template/ ContentPresenter">
+							<Setter Property="Background" Value="Transparent" />
+							<Setter Property="Foreground" Value="Gray" />
+							<Setter Property="RenderTransform" Value="scale(1.11)" />
+						</Style>
+
+						<Style Selector="FlyoutPresenter.test">
+							<Setter Property="CornerRadius" Value="0" />
+						</Style>
+					</Grid.Styles>
+
+					<Grid ColumnDefinitions="Auto, Auto, *, Auto">
+						<Button Grid.Column="0"
+								Content="{materialIcons:MaterialIconExt Kind=HamburgerMenu, Size=30}"
+								Command="{Binding TriggerPaneCommand}" />
+
+						<Button Grid.Column="1" Content="Create" VerticalAlignment="Center">
+							<Button.Flyout>
+								<Flyout FlyoutPresenterClasses="test" Placement="BottomEdgeAlignedLeft">
+									<TextBlock Text="Flyout Content!"/>
+								</Flyout>
+							</Button.Flyout>
+						</Button>
+
+						<Button Grid.Column="3" Content="Trey Norman" VerticalAlignment="Center">
+							<Button.Flyout>
+								<Flyout FlyoutPresenterClasses="test" Placement="BottomEdgeAlignedRight">
+									<TextBlock Text="Flyout Content!"/>
+								</Flyout>
+							</Button.Flyout>
+						</Button>
+					</Grid>
+
+				</Grid>
+
+				<!--- main content -->
+				<Grid Grid.Row="1"
+					  Background="#323b44">
+					<TransitioningContentControl Content="{Binding CurrentPage}" />
+				</Grid>
+
+			</Grid>
+
+		</SplitView.Content>
+	</SplitView>
+</UserControl>

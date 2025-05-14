@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker;Microsoft.NET.Sdk.Publish">
+	
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>dotnet-ProbabilityTrades.WorkerService.Kucoin-C3F408B2-285D-44A9-8A30-6AA46D00A2E9</UserSecretsId>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Coravel" Version="5.0.4" />
+		<PackageReference Include="FluentScheduler" Version="5.5.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Serilog.Settings.Configuration" Version="8.0.1" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+		<PackageReference Include="Serilog.Sinks.MSSqlServer" Version="6.6.1" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\ProbabilityTrades.Common\ProbabilityTrades.Common.csproj" />
+	  <ProjectReference Include="..\ProbabilityTrades.Domain\ProbabilityTrades.Domain.csproj" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Properties\ServiceDependencies\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <None Update="Settings.job">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+	
+</Project>

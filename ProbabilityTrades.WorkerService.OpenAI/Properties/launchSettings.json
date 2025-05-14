@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "ProbabilityTrades.WorkerService.OpenAI": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+        //"DOTNET_ENVIRONMENT": "Production"
+      }
+    }
+  }
+}

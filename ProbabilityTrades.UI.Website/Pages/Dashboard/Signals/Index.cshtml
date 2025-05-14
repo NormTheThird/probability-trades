@@ -1,0 +1,46 @@
+﻿@page "/signals"
+@{
+    Layout = "_LayoutDashboard";
+}
+
+<div id="pricing-tables" class="mb-100 bs-docs-section" data-bind="with: CurrentVM">
+    <div class="row mb-30">
+        <div class="col-md-12">
+            <div class="tabs-3 mt-30">
+                <ul class="nav nav-tabs bootstrap-tabs">
+                    <li class="active"><a href="#btc-usdt-tab" class="a-inv" data-toggle="tab">BTC-USDT</a></li>
+                </ul>
+
+                <div class="tab-content mt-20">
+                    <div class="tab-pane fade in active" id="btc-usdt-tab">
+                        <table id="moving-average-singnal-datatable" class="table mb-40">
+                            <thead>
+                                <tr>
+                                    <th>Close Date</th>
+                                    <th>Close Price</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: Signals">
+                                <tr>
+                                    <td data-bind="html: CloseDateDisplay"></td>
+                                    <td data-bind="html: ClosePrice"></td>
+                                    <td data-bind="html: MarketAction, class: MarketActionClass"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/js/ViewModels/SignalViewModels.js"></script>
+    <script type="text/javascript">
+        MainVM.PageTitle("Signals");
+        MainVM.CurrentVM(new SignalsViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

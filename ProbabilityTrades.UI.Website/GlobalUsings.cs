@@ -1,0 +1,15 @@
+﻿global using ProbabilityTrades.Common.Models;
+global using ProbabilityTrades.UI.Website.Models;
+global using ProbabilityTrades.UI.Website.Services;
+global using Microsoft.AspNetCore.Authentication;
+global using Microsoft.AspNetCore.Authentication.OAuth;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Authentication.Cookies;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.AspNetCore.Mvc.RazorPages;
+global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
+global using System.Net.Http.Headers;
+global using System.Security.Claims;
+global using System.Text;
+global using System.Text.Json;

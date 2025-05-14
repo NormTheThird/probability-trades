@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ProbabilityTrades.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:ProbabilityTrades.Avalonia.Views"
+	    Width="1200" Height="800"
+        x:Class="ProbabilityTrades.Avalonia.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+		WindowStartupLocation="CenterScreen"
+        Title="ProbabilityTrades.Avalonia">
+	<Grid>
+		<views:MainView  />
+	</Grid>
+</Window>

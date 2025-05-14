@@ -1,0 +1,11 @@
+﻿@page "/subscription"
+@model IndexModel
+@{
+    Layout = "_LayoutDashboard";
+    ViewBag.Title = "Subscription Management";
+}
+
+<h3>Effortlessly Handle Your Subscription in the Stripe Portal!</h3>
+<form id="stripe-portal-form" method="post" asp-page-handler="ShowStripePortal">
+    <button type="submit" class="button medium gray mt-20">Access Stripe Portal</button>
+</form>

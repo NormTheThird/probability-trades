@@ -1,0 +1,32 @@
+﻿@model IndexModel
+
+<div class="tab-pane fade in active" id="profile-tab">
+    <form id="profile-form" method="post" asp-page-handler="SaveProfile">
+        <div class="row mb-23">
+            <div class="col-md-4">
+                <input type="text" class="controled" name="FirstName" id="FirstName" placeholder="FIRST NAME (optional)" value="@Model.Account.FirstName" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" class="controled" name="LastName" id="LastName" placeholder="LAST NAME (optional)" value="@Model.Account.LastName" />
+            </div>
+        </div>
+        <div class="row mb-23">
+            <div class="col-md-4">
+                <input type="text" class="controled" name="UserName" id="UserName" readonly value="@Model.Account.Username" />
+            </div>
+            <div class="col-md-4">
+                <input type="email" class="controled disabled" name="Email" id="Email" readonly value="@Model.Account.Email" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" class="controled" name="PhoneNumber" id="PhoneNumber" placeholder="PHONE NUMBER (optional)" value="@Model.Account.PhoneNumber" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <input type="submit" value="SAVE" class="button medium gray mt-40" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+﻿@page
+@model ProbabilityTrades.UI.Website.Pages.Security.LoginModel
+@{
+    Layout = "_LayoutSecurity";
+}
+
+<div class="container p-160-cont pt-sm-60">
+    <form id="login-form" method="post">
+        <div class="row col-md-6 col-md-offset-3 mb-50">
+            <img src="~/images/logos/logo_full_gold.png" class="mb-40" />
+            <div class="row mt-10">
+                <div class="col-md-12 mb-15">
+                    <p class="text-justify">
+                        To fully engage with our community, Discord is an essential communication tool. If you're new to Discord,
+                        please follow the link below to register an account. After registration, return to this page to continue.
+                    </p>
+                </div>
+                <div class="col-md-12 text-center mt-10 mb-20">
+                    <a href="https://discord.com/register" target="_blank" class="text-primary">Register for a Discord account!</a>
+                </div>
+                <div class="col-md-12 mb-15">
+                    <p class="text-justify">
+                        Already a Discord user? Use the link below to sign in to our application. Once signed in, your user will be
+                        connected to the Discord server, granting you access to free notifications.
+                    </p>
+                </div>
+                <div class="col-md-12 mt-10 mb-20">
+                    <button type="submit" class="button large price-button pull-right" style="background: #738ADB; color: #ffffff">
+                        <img src="/images/discord2.svg" alt="SVG Icon" class="svg-icon" style="margin-right: 10px !important">
+                        <span>Log in with Discord</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

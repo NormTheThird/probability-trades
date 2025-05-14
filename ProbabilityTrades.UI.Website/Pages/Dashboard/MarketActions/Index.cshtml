@@ -1,0 +1,38 @@
+﻿@page "/market-actions"
+@{
+    Layout = "_LayoutDashboard";
+}
+
+<div data-bind="with: CurrentVM">
+    <div class="tabs-3" data-bind="visible: IsShowSelection()">
+        <ul class="nav nav-tabs bootstrap-tabs">
+            <li class="active"><a href="#kucoin-tab" class="a-inv" data-toggle="tab">Kucoin</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="kucoin-tab">
+                <div class="row">
+                    <div class="col-md-3 mb-30 mt-30">
+                        <div>
+                            <h4 class="pt-h1-container" style="padding: 20px !important">Moving Averages</h4>
+                            <div>
+                                <a class="button medium gray price-button" data-bind="click: ShowMovingAverages">SELECT</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <partial name="_MovingAverages" />
+</div>
+
+@section scripts {
+    <script src="~/js/ViewModels/MarketActionViewModels.js"></script>
+    <script type="text/javascript">
+        MainVM.PageTitle("Market Actions");
+        MainVM.CurrentVM(new MarketActionsViewModel());
+        MainVM.CurrentVM().Load();
+    </script>
+}

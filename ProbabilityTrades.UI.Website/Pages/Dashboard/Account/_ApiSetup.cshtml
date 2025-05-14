@@ -1,0 +1,33 @@
+﻿<div class="tab-pane fade" id="api-setup-tab">
+    <div class="col-md-12">
+        <div class="tabs tabs-vertical tabs-left custom-tabs">
+            <ul class="nav nav-tabs">
+                <!-- ko foreach: UserExchangeSummary -->
+                <li data-bind="css: (Active() ? 'active' : '')">
+                    <a class="a-inv" data-toggle="tab" data-bind="click: $parent.SelectUserExchangeSummary, text: Name, attr: { href: '#' + Name() + '-tab' }"></a>
+                </li>
+                <!-- /ko -->
+            </ul>
+            <div class="tab-content">
+                <div id="kucoin" class="tab-pane tab-content-container active" data-bind="with: SelectedUserExchange">
+                    <div class="row">
+                        <div class="col-md-12 mb-20">
+                            <input id="APIKey" type="password" class="controled" name="APIKey" placeholder="API KEY" data-bind="value: APIKey">
+                        </div>
+                        <div class="col-md-12 mb-20">
+                            <input id="APISecret" type="password" class="controled" name="APISecret" placeholder="API SECRET" data-bind="value: APISecret">
+                        </div>
+                        <div class="col-md-12">
+                            <input id="APIPassphrase" type="password" class="controled" name="APIPassphrase" placeholder="API PASSPHRASE" data-bind="value: APIPassphrase">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="submit" value="SAVE API KEYS" class="button medium gray mt-40" data-bind="click: $parent.SaveAPIKeys">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

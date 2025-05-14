@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Probability Trade</title>
+    <meta charset="utf-8">
+    <meta name="robots" content="index, follow">
+    <meta name="keywords" content="Probability Trade">
+    <meta name="description" content="Probability Trade">
+    <meta name="author" content="Uniek Software">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" href="images/logos/logo_gold.png">
+    <link rel="stylesheet" href="~/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:400,300,700" type="text/css">
+    <link rel="stylesheet" href="css/icons-fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel='stylesheet' href="css/animate.min.css">
+</head>
+<body>
+    <div id="wrap" class="boxed ">
+        <div class="grey-bg">
+
+            <!-- header -->
+            <div class="header-transporent-bg-black" data-bind="with: MainVM.HeaderVM">
+                <header id="nav" class="header header-1 black-header">
+                    <div class="header-wrapper">
+                        <div class="container-m-30 clearfix">
+                            <div class="logo-row">
+
+                                <!-- Logo -->
+                                <div class="logo-container-2">
+                                    <div class="logo-2">
+                                        <a href="/" class="clearfix">
+                                            <img src="images/logos/logo_white.png" class="logo-img" alt="Logo">
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="menu-btn-respons-container">
+                                    <button type="button" class="navbar-toggle btn-navbar collapsed" data-toggle="collapse" data-target="#main-menu .navbar-collapse">
+                                        <span aria-hidden="true" class="icon_menu hamb-mob-icon"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Nav Menu -->
+                        <div class="main-menu-container">
+                            <div class="container-m-30 clearfix">
+                                <div id="main-menu">
+                                    <div class="navbar navbar-default" role="navigation">
+                                        <nav class="collapse collapsing navbar-collapse right-1024">
+                                            <ul id="nav-onepage" class="nav navbar-nav">
+                                           
+                                                @if (new List<string> { "/404" }.Contains(Context.Request.Path))
+                                                {
+                                                    <li>
+                                                        <a href="/index"><div class="main-menu-title">HOME</div></a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="current">
+                                                        <a href="#index-link"><div class="main-menu-title">HOME</div></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#subscribe-link">
+                                                            <div class="main-menu-title">SUBSCRIBE</div>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <li>
+                                                        <a href="/account">
+                                                            <div class="main-menu-title">ADMIN</div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a>
+                                                            <div class="main-menu-title">@User.Identity.Name.ToUpper()</div>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a>
+                                                            <form id="logoutForm" asp-page="/Security/Logout" method="post">
+                                                                <div class="main-menu-title" onclick="document.getElementById('logoutForm').submit();">LOGOUT</div>
+                                                            </form>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li>
+                                                        <a href="/security/login">
+                                                            <div class="main-menu-title">LOGIN</div>
+                                                        </a>
+                                                    </li>
+                                                }
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- STATIC MEDIA IMAGE -->
+                <div id="index-link" class="sm-img-bg">
+                    <div class="container sm-content-cont text-center">
+                        <div class="sm-cont-middle">
+
+                            <!-- OPACITY container -->
+                            <div class="opacity-scroll2">
+
+                                <!-- LAYER NR. 1 -->
+                                <div class="font-white light-72-wide sm-mb-15 sm-mt-20">
+                                    PROBABILITY <span class="bold">TRADES</span>
+                                </div>
+
+                                <!-- LAYER NR. 2 -->
+                                <div class="font-white norm-16-wide hide-0-736 sm-mb-50">
+                                    EASY TRADE SIGNALS
+                                </div>
+
+                                <!-- LAYER NR. 3 -->
+                                @*<div class="center-0-478">
+                                <a class="button medium thin hover-dark tp-button white" href="https://1.envato.market/a1gQR">SEE MORE</a><a class="button medium thin hover-dark tp-button white ml-20" href="https://1.envato.market/GVZ26">BUY NOW</a>
+                                </div>*@
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @RenderBody()
+
+            <partial name="_Footer" />
+        </div>
+    </div>
+
+    <script src="~/plugins/jquery/jquery-1.11.2.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/plugins/jquery/jquery.magnific-popup.min.js"></script>
+    <script src="~/plugins/jquery/jquery.countTo.js"></script>
+    <script src="~/plugins/jquery/jquery.appear.js"></script>
+    <script src="~/plugins/jquery/jquery.stellar.min.js"></script>
+    <script src="~/plugins/jquery/jquery.nav.js"></script>
+    <script src="~/plugins/toastr/js/toastr.min.js"></script>
+    <script src="~/plugins/jquery/jquery.validate.min.js"></script>
+    <script src="~/plugins/owl-carousel/js/owl.carousel.min.js"></script>
+    <script src="~/plugins/knockout/knockout-3.5.1.min.js"></script>
+    <script src="~/plugins/js-cookie/js.cookie.min.js"></script>
+    <script src="~/js/imagesloaded.pkgd.min.js"></script>
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+
+    <script src="~/js/ViewModels/_BaseModel.js?v=@System.Reflection.Assembly.GetExecutingAssembly().GetName().Version"></script>
+    <script src="~/js/ViewModels/BlogViewModels.js"></script>
+    <script src="~/js/ViewModels/SubscriptionViewModels.js"></script>
+    <script src="~/js/ViewModels/MainViewModel.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <script type="text/javascript">
+        // Get base api url from app settings
+        BaseModel.BaseApiUrl = '@Configuration["ApiUrl"]';
+        console.log("BaseApiUrl: " + BaseModel.BaseApiUrl);
+
+        var MainVM = new MainViewModel();
+        ko.applyBindings(MainVM);
+
+        $(document).ready(function () {
+            var top_offset = $('header').height() - 1;
+            $('#nav-onepage').onePageNav({
+                currentClass: 'current',
+                changeHash: false,
+                scrollSpeed: 700,
+                scrollOffset: top_offset,
+                scrollThreshold: 0.5,
+                filter: '',
+                easing: 'swing',
+                begin: function () {
+                    //I get fired when the animation is starting
+                },
+                end: function () {
+                    //I get fired when the animation is ending
+                },
+                scrollChange: function ($currentListItem) {
+                    //I get fired when you enter a section and I pass the list item of the section
+                }
+            });
+        });
+    </script>
+</body>
+</html>

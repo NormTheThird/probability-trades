@@ -1,0 +1,80 @@
+# ASP.NET Core (.NET Framework) build pipeline configuration
+
+# Build and test ASP.NET Core projects targeting the full .NET Framework.
+# Add steps that publish symbols, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+  solution: '**/ProbabilityTrades.sln'
+
+jobs:
+  - job: BuildTestPublish
+    displayName: 'Build, Test and Publish'
+    steps:
+#      - task: UseDotNet@2
+#        inputs:
+#          packageType: 'sdk'
+#          version: '6.0.x'
+
+      - task: NuGetToolInstaller@1
+        name: 'NuGetToolInstaller'
+        displayName: 'NuGet Tool Installer'
+      
+      - task: NuGetCommand@2
+        name: 'NuGetRestore'
+        displayName: 'NuGet Restore Packages'
+        condition: ne(variables.CACHE_RESTORED, true)
+        inputs:
+          command: 'restore'
+          restoreSolution: '$(solution)'
+          
+      - task: DotNetCoreCLI@2
+        name: 'Build'
+        displayName: 'Build'
+        inputs:
+          command: 'build'
+          projects: '$(solution)'
+          arguments: '--configuration $(buildConfiguration)'
+
+ #     - task: DotNetCoreCLI@2
+ #       name: 'Test'
+ #       displayName: 'Run Tests'
+ #       inputs:
+ #         command: 'test'
+ #         projects: '$(solution)'
+ #         arguments: '--configuration $(buildConfiguration)'
+
+      - task: CopyFiles@2
+        name: 'CopyFiles'
+        displayName: 'Copy Files'
+        inputs:
+          SourceFolder: '$(Build.SourcesDirectory)'
+          Contents: '**\bin\release\**'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        name: 'PublishBuildArtifacts'
+        displayName: 'PublishBuildArtifacts'
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'mainArtifact'
+          publishLocation: 'Container'
+      
+#      - task: DotNetCoreCLI@2
+#        name: 'Publish'
+#        displayName: 'Publish'
+#        inputs:
+#          command: 'publish'
+#          arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+#          publishWebProjects: true

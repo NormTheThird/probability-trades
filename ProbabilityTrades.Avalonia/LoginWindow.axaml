@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="ProbabilityTrades.Avalonia.LoginWindow"
+        Width="400" Height="400"
+        WindowStartupLocation="CenterScreen"
+        ExtendClientAreaToDecorationsHint="true"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="0"
+        CanResize="False"
+        Background="#2E2E2E">
+	<Window.Styles>
+		<Style Selector="TextBlock">
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="TextBox">
+			<Setter Property="Background" Value="#3E3E3E"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="BorderBrush" Value="#5A5A5A"/>
+		</Style>
+		<Style Selector="CheckBox">
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+		</Style>
+		<Style Selector="Button">
+			<Setter Property="Background" Value="#007ACC"/>
+			<Setter Property="Foreground" Value="#FFFFFF"/>
+			<Setter Property="BorderBrush" Value="#007ACC"/>
+			<Setter Property="Padding" Value="10"/>
+			<Setter Property="FontSize" Value="16"/>
+		</Style>
+		<Style Selector="Button.Link">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Foreground" Value="#007ACC"/>
+			<Setter Property="BorderBrush" Value="Transparent"/>
+			<Setter Property="Padding" Value="0"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="FontWeight" Value="Normal"/>
+		</Style>
+	</Window.Styles>
+	<Grid RowDefinitions="Auto,*,Auto, Auto" Margin="20">
+		<TextBlock Text="Login" HorizontalAlignment="Center" FontSize="28" FontWeight="Bold" Margin="0,40,0,20"/>
+
+		<StackPanel Grid.Row="1" Spacing="20" VerticalAlignment="Center">
+			<TextBox Width="300" Watermark="Email" HorizontalAlignment="Center" />
+			<TextBox Width="300" PasswordChar="*" Watermark="Password" HorizontalAlignment="Center" />
+			<CheckBox Content="Remember Me" HorizontalAlignment="Center"/>
+		</StackPanel>
+
+		<Button Grid.Row="2" Content="Login" Command="{Binding LoginCommand}" Width="300" HorizontalAlignment="Center" Margin="0,40,0,10"/>
+
+		<!-- Close Link -->
+		<Button Grid.Row="3" Content="Close" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" FontSize="14" Foreground="#007ACC" Click="CloseButton_Click"/>
+	</Grid>
+</Window>
